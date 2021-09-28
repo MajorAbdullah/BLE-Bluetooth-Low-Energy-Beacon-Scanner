@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     ArrayList<ExampleItem> exampleList = new ArrayList<>();
+    List<String> MACaDDRESS = new ArrayList<>();
 
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 100000;
@@ -268,14 +269,11 @@ public class MainActivity extends AppCompatActivity {
                     ExampleItem saveddata = new ExampleItem();
 
 
-                    for (ADStructure structure : structures)
-                    {
-                        structure.getType();
-                        // If the ADStructure instance can be cast to IBeacon.
-                        if (structure instanceof IBeacon)
-                        {
-                            IBeacon iBeacon = (IBeacon)structure;
+                    for (ADStructure structure : structures) {
 
+                        // If the ADStructure instance can be cast to IBeacon.
+                        if (structure instanceof IBeacon) {
+                            IBeacon iBeacon = (IBeacon) structure;
                             saveddata.setType(1);
 // (1) Proximity UUID
                             UUID uuid = iBeacon.getUUID();
@@ -292,86 +290,110 @@ public class MainActivity extends AppCompatActivity {
                         }
 
 
-                        if (structure instanceof EddystoneUID )
-                        {
+                        if (structure instanceof EddystoneUID) {
                             // Eddystone UID
-                            EddystoneUID es = (EddystoneUID)structure;
+                            EddystoneUID es = (EddystoneUID) structure;
+                            saveddata.setType(2);
 
 // (1) Calibrated Tx power at 0 m.
                             int power = es.getTxPower();
+                            saveddata.setMpower1(power);
 
 // (2) 10-byte Namespace ID
                             byte[] namespaceId = es.getNamespaceId();
                             String namespaceIdAsString = es.getNamespaceIdAsString();
+                            saveddata.setMnamespaceId(namespaceId);
 
 // (3) 6-byte Instance ID
                             byte[] instanceId = es.getInstanceId();
                             String instanceIdAsString = es.getInstanceIdAsString();
+                            saveddata.setMinstanceId(instanceId);
 
 // (4) 16-byte Beacon ID
                             byte[] beaconId = es.getBeaconId();
                             String beaconIdAsString = es.getBeaconIdAsString();
+                            saveddata.setMbeaconId(beaconId);
+
                         }
 
 
-                        if (structure instanceof EddystoneURL )
-                        {
+                        if (structure instanceof EddystoneURL) {
                             // Eddystone URL
-                            EddystoneURL es = (EddystoneURL)structure;
+                            EddystoneURL es = (EddystoneURL) structure;
+                            saveddata.setType(3);
+
 // (1) Calibrated Tx power at 0 m.
                             int power = es.getTxPower();
+                            saveddata.setMpower2(power);
+
 // (2) URL
                             URL url = es.getURL();
+                            saveddata.setMurl(url);
                         }
 
 
-                        if (structure instanceof EddystoneTLM)
-                        {
+                        if (structure instanceof EddystoneTLM) {
                             // Eddystone TLM
-                            EddystoneTLM es = (EddystoneTLM)structure;
+                            EddystoneTLM es = (EddystoneTLM) structure;
+                            saveddata.setType(4);
+
 // (1) TLM Version
                             int version = es.getTLMVersion();
+                            saveddata.setMversion(version);
+
 // (2) Battery Voltage
                             int voltage = es.getBatteryVoltage();
+                            saveddata.setMvoltage(voltage);
+
 // (3) Beacon Temperature
                             float temperature = es.getBeaconTemperature();
+                            saveddata.setMtemperature(temperature);
+
 // (4) Advertisement count since power-on or reboot.
                             long count = es.getAdvertisementCount();
+                            saveddata.setMcount(count);
+
 // (5) Elapsed time in milliseconds since power-on or reboot.
                             long elapsed = es.getElapsedTime();
+                            saveddata.setMelapsed(elapsed);
+
                         }
 
 
-                        if (structure instanceof EddystoneEID )
-                        {
+                        if (structure instanceof EddystoneEID) {
                             // Eddystone EID
-                            EddystoneEID es = (EddystoneEID)structure;
+                            EddystoneEID es = (EddystoneEID) structure;
+                            saveddata.setType(5);
+
 // (1) Calibrated Tx power at 0 m.
                             int power = es.getTxPower();
+                            saveddata.setMpower3(power);
+
 // (2) 8-byte EID
                             byte[] eid = es.getEID();
                             String eidAsString = es.getEIDAsString();
+                            saveddata.setMeid(eid);
                         }
 
-                        if (structure instanceof Ucode)
-                        {
-                            Ucode ucode = (Ucode)structure;
-// (1) Version
-                            int version = ucode.getVersion();
-// (2) Ucode (32 upper-case hex letters)
-                            //         String ucode = ucode.getUcode();
-// (3) Status
-                            int status = ucode.getStatus();
-// (4) The state of the battery
-                            boolean low = ucode.isBatteryLow();
-// (5) Transmission interval
-                            int interval = ucode.getInterval();
-// (6) Transmission power
-                            int power = ucode.getPower();
-// (7) Transmission count
-                            int count = ucode.getCount();
-
-                        }
+//                        if (structure instanceof Ucode)
+//                        {
+//                            Ucode ucode = (Ucode)structure;
+//// (1) Version
+//                            int version = ucode.getVersion();
+//// (2) Ucode (32 upper-case hex letters)
+//                            //         String ucode = ucode.getUcode();
+//// (3) Status
+//                            int status = ucode.getStatus();
+//// (4) The state of the battery
+//                            boolean low = ucode.isBatteryLow();
+//// (5) Transmission interval
+//                            int interval = ucode.getInterval();
+//// (6) Transmission power
+//                            int power = ucode.getPower();
+//// (7) Transmission count
+//                            int count = ucode.getCount();
+//
+//                        }
 
                     }
 
@@ -391,129 +413,28 @@ public class MainActivity extends AppCompatActivity {
                     saveddata.setMdeviceaddress(deviceaddress);
                     saveddata.setMhashcode(hashcode);
                     saveddata.setMdeviceadvertising(advertising);
-//
-//                    saveddata.setMuuid();
-//                    saveddata.setMmajor();
-//                    saveddata.setMminor();
-//                    saveddata.setMpower();
 
-                    exampleList.add(saveddata);
-                    adapter.notifyDataSetChanged();
+                    if (MACaDDRESS.size() > 0) {
+                        if (MACaDDRESS.contains(deviceaddress)) {
+                            int index=MACaDDRESS.indexOf(deviceaddress);
+                            exampleList.set(index,saveddata);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            MACaDDRESS.add(deviceaddress);
+                            exampleList.add(saveddata);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    } else {
+                        MACaDDRESS.add(deviceaddress);
+                        exampleList.add(saveddata);
+                        adapter.notifyDataSetChanged();
+                    }
+
 
                     pairedTv.setText(result.getDevice().getAddress());
 
                 }
             };
 
-//    public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-//        // Parse the payload of the advertising packet.
-//        List<ADStructure> structures = ADPayloadParser.getInstance().parse(scanRecord);
-//
-//        // For each AD structure contained in the advertising packet.
-//        for (ADStructure structure : structures)
-//        {
-//            // If the ADStructure instance can be cast to IBeacon.
-//            if (structure instanceof IBeacon)
-//            {
-//                IBeacon iBeacon = (IBeacon)structure;
-//
-//// (1) Proximity UUID
-//                UUID uuid = iBeacon.getUUID();
-//// (2) Major number
-//                int major = iBeacon.getMajor();
-//// (3) Minor number
-//                int minor = iBeacon.getMinor();
-//// (4) Tx Power
-//                int power = iBeacon.getPower();
-//            }
-//
-//
-//            if (structure instanceof EddystoneUID )
-//            {
-//                // Eddystone UID
-//                EddystoneUID es = (EddystoneUID)structure;
-//
-//// (1) Calibrated Tx power at 0 m.
-//                int power = es.getTxPower();
-//
-//// (2) 10-byte Namespace ID
-//                byte[] namespaceId = es.getNamespaceId();
-//                String namespaceIdAsString = es.getNamespaceIdAsString();
-//
-//// (3) 6-byte Instance ID
-//                byte[] instanceId = es.getInstanceId();
-//                String instanceIdAsString = es.getInstanceIdAsString();
-//
-//// (4) 16-byte Beacon ID
-//                byte[] beaconId = es.getBeaconId();
-//                String beaconIdAsString = es.getBeaconIdAsString();
-//            }
-//
-//
-//            if (structure instanceof EddystoneURL )
-//            {
-//                // Eddystone URL
-//                EddystoneURL es = (EddystoneURL)structure;
-//// (1) Calibrated Tx power at 0 m.
-//                int power = es.getTxPower();
-//// (2) URL
-//                URL url = es.getURL();
-//            }
-//
-//
-//            if (structure instanceof EddystoneTLM)
-//            {
-//                // Eddystone TLM
-//                EddystoneTLM es = (EddystoneTLM)structure;
-//// (1) TLM Version
-//                int version = es.getTLMVersion();
-//// (2) Battery Voltage
-//                int voltage = es.getBatteryVoltage();
-//// (3) Beacon Temperature
-//                float temperature = es.getBeaconTemperature();
-//// (4) Advertisement count since power-on or reboot.
-//                long count = es.getAdvertisementCount();
-//// (5) Elapsed time in milliseconds since power-on or reboot.
-//                long elapsed = es.getElapsedTime();
-//            }
-//
-//
-//            if (structure instanceof EddystoneEID )
-//            {
-//                // Eddystone EID
-//                EddystoneEID es = (EddystoneEID)structure;
-//// (1) Calibrated Tx power at 0 m.
-//                int power = es.getTxPower();
-//// (2) 8-byte EID
-//                byte[] eid = es.getEID();
-//                String eidAsString = es.getEIDAsString();
-//            }
-//
-//            if (structure instanceof Ucode)
-//            {
-//                Ucode ucode = (Ucode)structure;
-//// (1) Version
-//                int version = ucode.getVersion();
-//// (2) Ucode (32 upper-case hex letters)
-//       //         String ucode = ucode.getUcode();
-//// (3) Status
-//                int status = ucode.getStatus();
-//// (4) The state of the battery
-//                boolean low = ucode.isBatteryLow();
-//// (5) Transmission interval
-//                int interval = ucode.getInterval();
-//// (6) Transmission power
-//                int power = ucode.getPower();
-//// (7) Transmission count
-//                int count = ucode.getCount();
-//
-//            }
-//
-//
-//
-//
-//        }
-//
-//
-//    }
 }

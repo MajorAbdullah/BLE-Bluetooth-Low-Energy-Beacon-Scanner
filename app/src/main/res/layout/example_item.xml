@@ -6,16 +6,36 @@
     app:cardCornerRadius="4dp"
     android:textAlignment="center">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/General"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="-2dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/GENERAL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GENERAL"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,243 +150,550 @@
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="?android:attr/listDivider" />
+
+        </LinearLayout>
+
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:id="@+id/llibeacon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-2dp"
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="-2dp"
-                android:orientation="vertical"
-                android:id="@+id/llibeacon"
-                android:visibility="gone">
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/IBEACON"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/IBEACON"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="I BEACON"
-                        android:textAlignment="center"
-                        android:textColor="@color/purple_200"
-                        android:textSize="30sp" />
+                    android:text="I BEACON"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
 
 
-                </LinearLayout>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameuuid"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:text="UUID:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:id="@+id/nameuuid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UUID:"
-                        android:textColor="@color/purple_200"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/duuid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ID"
-                        android:textSize="30sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/duuid"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:text="ID"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:id="@+id/namemajor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MAJOR:"
-                        android:textColor="@color/purple_200"
-                        android:textSize="30sp" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/dmajor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="major"
-                        android:textSize="30sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/namemajor"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:text="MAJOR:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
 
 
-                    <TextView
-                        android:id="@+id/nameminor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MINOR:"
-                        android:textColor="@color/purple_200"
-                        android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/dmajor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="major"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:id="@+id/dminor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="minor"
-                        android:textSize="30sp" />
+            </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="53dp"
-                    android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
-                    <TextView
-                        android:id="@+id/namepower"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="POWER level:"
-                        android:textColor="@color/purple_200"
-                        android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/nameminor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MINOR:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
 
-                    <TextView
-                        android:id="@+id/dpower"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="power"
-                        android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/dminor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="minor"
+                    android:textSize="30sp" />
 
-                </LinearLayout>
+            </LinearLayout>
 
-<!--                <View-->
-<!--                    android:id="@+id/divider"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="5dp"-->
-<!--                    android:background="?android:attr/listDivider" />-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginEnd="-2dp"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/nameuuid"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="UUID:"-->
-<!--                            android:textColor="@color/purple_200"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/duuid"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="ID"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                    </LinearLayout>-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/namemajor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="MAJOR:"-->
-<!--                            android:textColor="@color/purple_200"-->
-<!--                            android:textSize="30sp" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:orientation="horizontal">
 
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/dmajor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="major"-->
-<!--                            android:textSize="30sp" />-->
+                <TextView
+                    android:id="@+id/namepower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POWER level:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
 
-<!--                    </LinearLayout>-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
-
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/nameminor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="MINOR:"-->
-<!--                            android:textColor="@color/purple_200"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/dminor"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="minor"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                    </LinearLayout>-->
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="53dp"-->
-<!--                        android:orientation="horizontal">-->
-
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/namepower"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="POWER level:"-->
-<!--                            android:textColor="@color/purple_200"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/dpower"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="power"-->
-<!--                            android:textSize="30sp" />-->
-
-<!--                    </LinearLayout>-->
-
-<!--                    <View-->
-<!--                        android:id="@+id/divider1"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="5dp"-->
-<!--                        android:background="?android:attr/listDivider" />-->
-
-<!--                </LinearLayout>-->
+                <TextView
+                    android:id="@+id/dpower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="power"
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lleddystoneUID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-2dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/EddystoneUID"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Eddystone UID"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namepower1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POWER:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/dpower1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="power"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namespace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NAMESPACE ID:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/dnmaespace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ns id"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/nameinstance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INSTANCE ID:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dinstance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ins id"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/namebeacon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BEACON ID:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dbeacon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="beacon id"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lleddystoneURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-2dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/EddystoneURL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Eddystone URL"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namepower2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POWER:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dpower2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="power"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameurl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="URL:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/durl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="url"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lleddystoneTLM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-2dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/EddystoneTLM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Eddystone TLM"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VERSION:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="version"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namevoltage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VOLTAGE:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/dvoltage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="voltage"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/nametemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TEMPERATURE:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dtemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temperature"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/nameelapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ELAPSED:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/delapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="elapsed"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/namecount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COUNT:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="count"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lleddystoneEID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-2dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/EddystoneEID"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Eddystone EID"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namepower3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="POWER:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/dpower3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="power"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameeid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EID:"
+                    android:textColor="@color/purple_200"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/deid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="eid"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

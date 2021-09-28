@@ -32,33 +32,29 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         public TextView Dpower;
 
         // For Eddystone UID
-        public LinearLayout llibeacon;
-        public TextView Duuid;
-        public TextView Dmajor;
-        public TextView Dminor;
-        public TextView Dpower;
+        public LinearLayout lleddystoneUID;
+        public TextView Dpower1;
+        public TextView Dnmaespace;
+        public TextView Dinstance;
+        public TextView Dbeacon;
 
         // For Eddystone URL
-        public LinearLayout llibeacon;
-        public TextView Duuid;
-        public TextView Dmajor;
-        public TextView Dminor;
-        public TextView Dpower;
+        public LinearLayout lleddystoneURL;
+        public TextView Dpower2;
+        public TextView Durl;
 
         // For Eddystone TLM
-        public LinearLayout llibeacon;
-        public TextView Duuid;
-        public TextView Dmajor;
-        public TextView Dminor;
-        public TextView Dpower;
+        public LinearLayout lleddystoneTLM;
+        public TextView Dversion;
+        public TextView Dvoltage;
+        public TextView Dtemperature;
+        public TextView Delapsed;
+        public TextView Dcount;
 
         // For Eddystone EID
-        public LinearLayout llibeacon;
-        public TextView Duuid;
-        public TextView Dmajor;
-        public TextView Dminor;
-        public TextView Dpower;
-
+        public LinearLayout lleddystoneEID;
+        public TextView Dpower3;
+        public TextView Deid;
 
         public ExampleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +70,32 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             Dmajor = itemView.findViewById(R.id.dmajor);
             Dminor = itemView.findViewById(R.id.dminor);
             Dpower = itemView.findViewById(R.id.dpower);
+
+            // For Eddystone UID
+            lleddystoneUID = itemView.findViewById(R.id.lleddystoneUID);
+            Dpower1 = itemView.findViewById(R.id.dpower1);
+            Dnmaespace = itemView.findViewById(R.id.dnmaespace);
+            Dinstance = itemView.findViewById(R.id.dinstance);
+            Dbeacon = itemView.findViewById(R.id.dbeacon);
+
+            // For Eddystone URL
+            lleddystoneURL = itemView.findViewById(R.id.lleddystoneURL);
+            Dpower2 = itemView.findViewById(R.id.dpower2);
+            Durl = itemView.findViewById(R.id.durl);
+
+            // For Eddystone TLM
+            lleddystoneTLM = itemView.findViewById(R.id.lleddystoneTLM);
+            Dversion = itemView.findViewById(R.id.dversion);
+            Dvoltage = itemView.findViewById(R.id.dvoltage);
+            Dtemperature = itemView.findViewById(R.id.dtemperature);
+            Delapsed = itemView.findViewById(R.id.delapsed);
+            Dcount = itemView.findViewById(R.id.dcount);
+
+            // For Eddystone EID
+            lleddystoneEID = itemView.findViewById(R.id.lleddystoneEID);
+            Dpower3 = itemView.findViewById(R.id.dpower3);
+            Deid = itemView.findViewById(R.id.deid);
+
 
         }
     }
@@ -101,6 +123,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.Daddress.setText(currentItem.getMdeviceaddress());
         holder.Dadvertising.setText(currentItem.getMdeviceadvertising());
 
+
         int type = currentItem.getType();
 
         if (type == 1) {
@@ -111,6 +134,40 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             holder.Dminor.setText(currentItem.getMminor());
             holder.Dpower.setText(currentItem.getMpower());
         } else holder.llibeacon.setVisibility(View.GONE);
+
+        if (type == 2) {
+            holder.lleddystoneUID.setVisibility(View.VISIBLE);
+            // For Eddystone UID
+            holder.Dpower1.setText(currentItem.getMpower1());
+            holder.Dnmaespace.setText(currentItem.getMnamespaceId());
+            holder.Dinstance.setText(currentItem.getMinstanceId());
+            holder.Dbeacon.setText(currentItem.getMbeaconId());
+        } else holder.lleddystoneUID.setVisibility(View.GONE);
+
+        if (type == 3) {
+            holder.lleddystoneURL.setVisibility(View.VISIBLE);
+            // For Eddystone URL
+            holder.Dpower2.setText(currentItem.getMpower2());
+            holder.Durl.setText(currentItem.getMurl().toString());
+        } else holder.lleddystoneURL.setVisibility(View.GONE);
+
+        if (type == 4) {
+            holder.lleddystoneTLM.setVisibility(View.VISIBLE);
+            // For Eddystone TLM
+            holder.Dversion .setText(currentItem.getMversion());
+            holder.Dvoltage .setText(currentItem.getMvoltage());
+            holder.Dtemperature .setText(((int) currentItem.getMtemperature()));
+            holder.Delapsed .setText(((int) currentItem.getMelapsed()));
+            holder.Dcount  .setText(((int) currentItem.getMcount()));
+
+        } else holder.lleddystoneTLM.setVisibility(View.GONE);
+
+        if (type == 5) {
+            holder.lleddystoneEID.setVisibility(View.VISIBLE);
+            // For Eddystone EID
+            holder.Dpower3.setText(currentItem.getMpower3());
+            holder.Deid.setText(currentItem.getMeid());
+        } else holder.lleddystoneEID.setVisibility(View.GONE);
 
 
     }
