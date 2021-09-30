@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
@@ -32,7 +31,6 @@ import com.neovisionaries.bluetooth.ble.advertising.EddystoneTLM;
 import com.neovisionaries.bluetooth.ble.advertising.EddystoneUID;
 import com.neovisionaries.bluetooth.ble.advertising.EddystoneURL;
 import com.neovisionaries.bluetooth.ble.advertising.IBeacon;
-import com.neovisionaries.bluetooth.ble.advertising.Ucode;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -42,8 +40,8 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRV;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private ExampleAdapter adapter;
+    private LinearLayoutManager layoutManager;
 
     private static final int REQUEST_ENABLE_BT = 0;
     private static final int REQUEST_DISCOVER_BT = 1;
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     ArrayList<ExampleItem> exampleList = new ArrayList<>();
-    List<String> MACaDDRESS = new ArrayList<>();
+    List<String> macAddressesList = new ArrayList<>();
 
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 100000;
@@ -71,17 +69,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // ExampleItem scan = new ExampleItem();
 //        exampleList.add(new ExampleItem());
 
         // ADAPTER CODE
 
         mRV = findViewById(R.id.mRV);
-        mRV.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new ExampleAdapter(exampleList);
         mRV.setLayoutManager(layoutManager);
+
+        adapter = new ExampleAdapter(MainActivity.this, exampleList);
+
         mRV.setAdapter(adapter);
 
         onbtn = findViewById(R.id.onbtn);
@@ -180,6 +178,13 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+
+        if (exampleList.size() == macAddressesList.size()) {
+            pairedTv.setText("list is equal");
+        } else {
+            pairedTv.setText("list not equal");
+        }
 
 
     }
@@ -414,25 +419,28 @@ public class MainActivity extends AppCompatActivity {
                     saveddata.setMhashcode(hashcode);
                     saveddata.setMdeviceadvertising(advertising);
 
-                    if (MACaDDRESS.size() > 0) {
-                        if (MACaDDRESS.contains(deviceaddress)) {
-                            int index=MACaDDRESS.indexOf(deviceaddress);
-                            exampleList.set(index,saveddata);
-                            adapter.notifyDataSetChanged();
+                    if (macAddressesList.size() > 0) {
+                        if (macAddressesList.contains(deviceaddress)) {
+                            if (exampleList.size() == macAddressesList.size()) {
+                                int index = macAddressesList.indexOf(deviceaddress);
+                                exampleList.set(index, saveddata);
+                                adapter.notifyDataSetChanged();
+                            }
                         } else {
-                            MACaDDRESS.add(deviceaddress);
+                            macAddressesList.add(deviceaddress);
                             exampleList.add(saveddata);
                             adapter.notifyDataSetChanged();
                         }
 
                     } else {
-                        MACaDDRESS.add(deviceaddress);
+                        macAddressesList.add(deviceaddress);
                         exampleList.add(saveddata);
                         adapter.notifyDataSetChanged();
                     }
 
 
                     pairedTv.setText(result.getDevice().getAddress());
+
 
                 }
             };

@@ -29,7 +29,7 @@ android {
 
 dependencies {
 
-
+//    implementation 'com.android.support:cardview-v7:23.0.1'
     implementation 'com.neovisionaries:nv-bluetooth:1.8'
     implementation 'no.nordicsemi.android:ble-common:2.3.0'
     implementation 'no.nordicsemi.android:ble:2.3.0'

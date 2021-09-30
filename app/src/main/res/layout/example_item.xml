@@ -6,6 +6,11 @@
     app:cardCornerRadius="4dp"
     android:textAlignment="center">
 
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/relativeLayout">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -695,5 +700,7 @@
 
 
     </LinearLayout>
+
+  </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

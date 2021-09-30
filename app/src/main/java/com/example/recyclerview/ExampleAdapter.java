@@ -1,5 +1,6 @@
 package com.example.recyclerview;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,83 @@ import java.util.ArrayList;
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
 
     private ArrayList<ExampleItem> mExampleList;
+    Context context;
+
+    public ExampleAdapter(Context context, ArrayList<ExampleItem> exampleList) {
+        mExampleList = exampleList;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
+        ExampleViewHolder evh = new ExampleViewHolder(v);
+        return evh;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
+        ExampleItem currentItem = mExampleList.get(position);
+        holder.Dhash.setText(currentItem.getMhashcode());
+        holder.Dname.setText(currentItem.getMdevicename());
+        holder.Did.setText(currentItem.getDevicerssi());
+        holder.Daddress.setText(currentItem.getMdeviceaddress());
+        holder.Dadvertising.setText(currentItem.getMdeviceadvertising());
+
+
+        int type = currentItem.getType();
+
+        if (type == 1) {
+            holder.llibeacon.setVisibility(View.VISIBLE);
+            // For ibeacon
+            holder.Duuid.setText(currentItem.getMuuid().toString());
+            holder.Dmajor.setText(String.valueOf(currentItem.getMmajor()));
+            holder.Dminor.setText(String.valueOf(currentItem.getMminor()));
+            holder.Dpower.setText(String.valueOf(currentItem.getMpower()));
+        } else holder.llibeacon.setVisibility(View.GONE);
+
+        if (type == 2) {
+            holder.lleddystoneUID.setVisibility(View.VISIBLE);
+            // For Eddystone UID
+            holder.Dpower1.setText(currentItem.getMpower1());
+            holder.Dnmaespace.setText(currentItem.getMnamespaceId());
+            holder.Dinstance.setText(currentItem.getMinstanceId());
+            holder.Dbeacon.setText(currentItem.getMbeaconId());
+        } else holder.lleddystoneUID.setVisibility(View.GONE);
+
+        if (type == 3) {
+            holder.lleddystoneURL.setVisibility(View.VISIBLE);
+            // For Eddystone URL
+            holder.Dpower2.setText(currentItem.getMpower2());
+            holder.Durl.setText(currentItem.getMurl().toString());
+        } else holder.lleddystoneURL.setVisibility(View.GONE);
+
+        if (type == 4) {
+            holder.lleddystoneTLM.setVisibility(View.VISIBLE);
+            // For Eddystone TLM
+            holder.Dversion.setText(currentItem.getMversion());
+            holder.Dvoltage.setText(currentItem.getMvoltage());
+            holder.Dtemperature.setText(((int) currentItem.getMtemperature()));
+            holder.Delapsed.setText(((int) currentItem.getMelapsed()));
+            holder.Dcount.setText(((int) currentItem.getMcount()));
+
+        } else holder.lleddystoneTLM.setVisibility(View.GONE);
+
+        if (type == 5) {
+            holder.lleddystoneEID.setVisibility(View.VISIBLE);
+            // For Eddystone EID
+            holder.Dpower3.setText(currentItem.getMpower3());
+            holder.Deid.setText(currentItem.getMeid());
+        } else holder.lleddystoneEID.setVisibility(View.GONE);
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return mExampleList.size();
+    }
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
 
@@ -96,86 +174,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             Dpower3 = itemView.findViewById(R.id.dpower3);
             Deid = itemView.findViewById(R.id.deid);
 
-
         }
     }
-
-    public ExampleAdapter(ArrayList<ExampleItem> exampleList) {
-        mExampleList = exampleList;
-    }
-
-    @NonNull
-    @Override
-    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(v);
-        return evh;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
-        ExampleItem currentItem = mExampleList.get(position);
-        holder.Dhash.setText(currentItem.getMhashcode());
-        holder.Dname.setText(currentItem.getMdevicename());
-        holder.Did.setText(currentItem.getDevicerssi());
-        holder.Daddress.setText(currentItem.getMdeviceaddress());
-        holder.Dadvertising.setText(currentItem.getMdeviceadvertising());
-
-
-        int type = currentItem.getType();
-
-        if (type == 1) {
-            holder.llibeacon.setVisibility(View.VISIBLE);
-            // For ibeacon
-            holder.Duuid.setText(currentItem.getMuuid().toString());
-            holder.Dmajor.setText(currentItem.getMmajor());
-            holder.Dminor.setText(currentItem.getMminor());
-            holder.Dpower.setText(currentItem.getMpower());
-        } else holder.llibeacon.setVisibility(View.GONE);
-
-        if (type == 2) {
-            holder.lleddystoneUID.setVisibility(View.VISIBLE);
-            // For Eddystone UID
-            holder.Dpower1.setText(currentItem.getMpower1());
-            holder.Dnmaespace.setText(currentItem.getMnamespaceId());
-            holder.Dinstance.setText(currentItem.getMinstanceId());
-            holder.Dbeacon.setText(currentItem.getMbeaconId());
-        } else holder.lleddystoneUID.setVisibility(View.GONE);
-
-        if (type == 3) {
-            holder.lleddystoneURL.setVisibility(View.VISIBLE);
-            // For Eddystone URL
-            holder.Dpower2.setText(currentItem.getMpower2());
-            holder.Durl.setText(currentItem.getMurl().toString());
-        } else holder.lleddystoneURL.setVisibility(View.GONE);
-
-        if (type == 4) {
-            holder.lleddystoneTLM.setVisibility(View.VISIBLE);
-            // For Eddystone TLM
-            holder.Dversion .setText(currentItem.getMversion());
-            holder.Dvoltage .setText(currentItem.getMvoltage());
-            holder.Dtemperature .setText(((int) currentItem.getMtemperature()));
-            holder.Delapsed .setText(((int) currentItem.getMelapsed()));
-            holder.Dcount  .setText(((int) currentItem.getMcount()));
-
-        } else holder.lleddystoneTLM.setVisibility(View.GONE);
-
-        if (type == 5) {
-            holder.lleddystoneEID.setVisibility(View.VISIBLE);
-            // For Eddystone EID
-            holder.Dpower3.setText(currentItem.getMpower3());
-            holder.Deid.setText(currentItem.getMeid());
-        } else holder.lleddystoneEID.setVisibility(View.GONE);
-
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return mExampleList.size();
-    }
-
 
 }

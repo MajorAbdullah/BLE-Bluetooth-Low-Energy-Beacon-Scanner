@@ -1,7 +1,6 @@
 package com.example.recyclerview;
 
 import com.neovisionaries.bluetooth.ble.advertising.ADStructure;
-
 import java.net.URL;
 import java.util.UUID;
 
