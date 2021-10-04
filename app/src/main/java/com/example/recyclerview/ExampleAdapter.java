@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
@@ -32,12 +33,20 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
+
         ExampleItem currentItem = mExampleList.get(position);
+
         holder.Dhash.setText(currentItem.getMhashcode());
         holder.Dname.setText(currentItem.getMdevicename());
         holder.Did.setText(currentItem.getDevicerssi());
         holder.Daddress.setText(currentItem.getMdeviceaddress());
         holder.Dadvertising.setText(currentItem.getMdeviceadvertising());
+
+        holder.F1.setText(String.valueOf(currentItem.isMf1()));
+        holder.F2.setText(String.valueOf(currentItem.isMf2()));
+        holder.F3.setText(String.valueOf(currentItem.isMf3()));
+        holder.F4.setText(String.valueOf(currentItem.isMf4()));
+        holder.F5.setText(String.valueOf(currentItem.isMf5()));
 
 
         int type = currentItem.getType();
@@ -54,37 +63,36 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         if (type == 2) {
             holder.lleddystoneUID.setVisibility(View.VISIBLE);
             // For Eddystone UID
-            holder.Dpower1.setText(currentItem.getMpower1());
-            holder.Dnmaespace.setText(currentItem.getMnamespaceId());
-            holder.Dinstance.setText(currentItem.getMinstanceId());
-            holder.Dbeacon.setText(currentItem.getMbeaconId());
+            holder.Dpower1.setText(String.valueOf(currentItem.getMpower1()));
+            holder.Dnmaespace.setText(String.valueOf(currentItem.getMnamespaceId().getBytes(StandardCharsets.UTF_8).toString()));
+            holder.Dinstance.setText(currentItem.getMinstanceId().toString());
+            holder.Dbeacon.setText(currentItem.getMbeaconId().toString());
         } else holder.lleddystoneUID.setVisibility(View.GONE);
 
         if (type == 3) {
             holder.lleddystoneURL.setVisibility(View.VISIBLE);
             // For Eddystone URL
-            holder.Dpower2.setText(currentItem.getMpower2());
+            holder.Dpower2.setText(String.valueOf(currentItem.getMpower2()));
             holder.Durl.setText(currentItem.getMurl().toString());
         } else holder.lleddystoneURL.setVisibility(View.GONE);
 
         if (type == 4) {
             holder.lleddystoneTLM.setVisibility(View.VISIBLE);
             // For Eddystone TLM
-            holder.Dversion.setText(currentItem.getMversion());
-            holder.Dvoltage.setText(currentItem.getMvoltage());
-            holder.Dtemperature.setText(((int) currentItem.getMtemperature()));
-            holder.Delapsed.setText(((int) currentItem.getMelapsed()));
-            holder.Dcount.setText(((int) currentItem.getMcount()));
+            holder.Dversion.setText(String.valueOf(currentItem.getMversion()));
+            holder.Dvoltage.setText(String.valueOf(currentItem.getMvoltage()));
+            holder.Dtemperature.setText(String.valueOf( currentItem.getMtemperature()));
+            holder.Delapsed.setText(String.valueOf(currentItem.getMelapsed()));
+            holder.Dcount.setText(String.valueOf(currentItem.getMcount()));
 
         } else holder.lleddystoneTLM.setVisibility(View.GONE);
 
         if (type == 5) {
             holder.lleddystoneEID.setVisibility(View.VISIBLE);
             // For Eddystone EID
-            holder.Dpower3.setText(currentItem.getMpower3());
-            holder.Deid.setText(currentItem.getMeid());
+            holder.Dpower3.setText(String.valueOf(currentItem.getMpower3()));
+            holder.Deid.setText(currentItem.getMeid().toString());
         } else holder.lleddystoneEID.setVisibility(View.GONE);
-
 
     }
 
@@ -101,6 +109,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         public TextView Daddress;
         public TextView Dname;
         public TextView Dadvertising;
+
+        // Flags
+        public TextView F1;
+        public TextView F2;
+        public TextView F3;
+        public TextView F4;
+        public TextView F5;
+
 
         // For ibeacon
         public LinearLayout llibeacon;
@@ -141,6 +157,13 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             Daddress = itemView.findViewById(R.id.daddress);
             Dname = itemView.findViewById(R.id.dname);
             Dadvertising = itemView.findViewById(R.id.dadvertising);
+
+            // Flags
+            F1 = itemView.findViewById(R.id.f1);
+            F2 = itemView.findViewById(R.id.f2);
+            F3 = itemView.findViewById(R.id.f3);
+            F4 = itemView.findViewById(R.id.f4);
+            F5 = itemView.findViewById(R.id.f5);
 
             // For ibeacon
             llibeacon = itemView.findViewById(R.id.llibeacon);

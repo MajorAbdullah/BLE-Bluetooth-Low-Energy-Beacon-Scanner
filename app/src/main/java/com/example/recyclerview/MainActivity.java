@@ -2,6 +2,7 @@ package com.example.recyclerview;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -30,6 +31,7 @@ import com.neovisionaries.bluetooth.ble.advertising.EddystoneEID;
 import com.neovisionaries.bluetooth.ble.advertising.EddystoneTLM;
 import com.neovisionaries.bluetooth.ble.advertising.EddystoneUID;
 import com.neovisionaries.bluetooth.ble.advertising.EddystoneURL;
+import com.neovisionaries.bluetooth.ble.advertising.Flags;
 import com.neovisionaries.bluetooth.ble.advertising.IBeacon;
 
 import java.net.URL;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     BluetoothAdapter bluetoothAdapter;
     // private LeDeviceListAdapter leDeviceListAdapter = new LeDeviceListAdapter();
 
-    private BluetoothLeScanner bluetoothLeScanner;
+    private BluetoothLeScanner bluetoothLeScanner = null;
     private boolean scanning;
     private Handler handler = new Handler();
 
@@ -266,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ScanCallback leScanCallback =
             new ScanCallback() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onScanResult(int callbackType, ScanResult result) {
                     super.onScanResult(callbackType, result);
@@ -275,6 +278,35 @@ public class MainActivity extends AppCompatActivity {
 
 
                     for (ADStructure structure : structures) {
+
+                        try {
+                            Flags flags = (Flags)structure;
+
+// (1) LE Limited Discoverable Mode
+                            boolean limited = flags.isLimitedDiscoverable();
+                            saveddata.setMf1(limited);
+
+// (2) LE General Discoverable Mode
+                            boolean general = flags.isGeneralDiscoverable();
+                            saveddata.setMf2(general);
+
+// (3) (inverted) BR/EDR Not Supported
+                            boolean legacySupported = flags.isLegacySupported();
+                            saveddata.setMf3(legacySupported);
+
+// (4) Simultaneous LE and BR/EDR to Same Device Capable (Controller)
+                            boolean controllerSimultaneity = flags.isControllerSimultaneitySupported();
+                            saveddata.setMf4(controllerSimultaneity);
+
+// (5) Simultaneous LE and BR/EDR to Same Device Capable (Host)
+                            boolean hostSimultaneity = flags.isHostSimultaneitySupported();
+                            saveddata.setMf5(hostSimultaneity);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+
+
 
                         // If the ADStructure instance can be cast to IBeacon.
                         if (structure instanceof IBeacon) {
@@ -380,25 +412,7 @@ public class MainActivity extends AppCompatActivity {
                             saveddata.setMeid(eid);
                         }
 
-//                        if (structure instanceof Ucode)
-//                        {
-//                            Ucode ucode = (Ucode)structure;
-//// (1) Version
-//                            int version = ucode.getVersion();
-//// (2) Ucode (32 upper-case hex letters)
-//                            //         String ucode = ucode.getUcode();
-//// (3) Status
-//                            int status = ucode.getStatus();
-//// (4) The state of the battery
-//                            boolean low = ucode.isBatteryLow();
-//// (5) Transmission interval
-//                            int interval = ucode.getInterval();
-//// (6) Transmission power
-//                            int power = ucode.getPower();
-//// (7) Transmission count
-//                            int count = ucode.getCount();
 //
-//                        }
 
                     }
 

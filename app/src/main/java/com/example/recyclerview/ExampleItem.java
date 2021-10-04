@@ -15,7 +15,7 @@ public class ExampleItem extends ADStructure {
     private long mcount, melapsed;
     private UUID muuid;
     private URL murl;
-
+    private boolean mf1,mf2,mf3,mf4,mf5;
     int type;
 
 
@@ -25,12 +25,19 @@ public class ExampleItem extends ADStructure {
 
 
     public ExampleItem(String hashcode, String devicename, String deviceaddress, String devicerssi, String deviceadvertising, UUID uuid, int major, int minor, int power, int power1, int power2, int power3, int version,
-                       int voltage, float temperature, byte[] namespaceId, byte[] instanceId, byte[] beaconId, byte[] eid, long count, long elapsed, URL url) {
+                       int voltage, float temperature, byte[] namespaceId, byte[] instanceId, byte[] beaconId, byte[] eid, long count, long elapsed, URL url,
+                       boolean f1,  boolean f2,  boolean f3,  boolean f4,  boolean f5 ) {
         mhashcode = hashcode;
         mdevicename = devicename;
         mdeviceaddress = deviceaddress;
         mdevicerssi = devicerssi;
         mdeviceadvertising = deviceadvertising;
+
+        mf1 = f1;
+        mf2 = f2;
+        mf3 = f3;
+        mf4 = f4;
+        mf5 = f5;
 
         muuid = uuid;
         mmajor = major;
@@ -241,4 +248,43 @@ public class ExampleItem extends ADStructure {
         this.type = type;
     }
 
+    public boolean isMf1() {
+        return mf1;
+    }
+
+    public void setMf1(boolean mf1) {
+        this.mf1 = mf1;
+    }
+
+    public boolean isMf2() {
+        return mf2;
+    }
+
+    public void setMf2(boolean mf2) {
+        this.mf2 = mf2;
+    }
+
+    public boolean isMf3() {
+        return mf3;
+    }
+
+    public void setMf3(boolean mf3) {
+        this.mf3 = mf3;
+    }
+
+    public boolean isMf4() {
+        return mf4;
+    }
+
+    public void setMf4(boolean mf4) {
+        this.mf4 = mf4;
+    }
+
+    public boolean isMf5() {
+        return mf5;
+    }
+
+    public void setMf5(boolean mf5) {
+        this.mf5 = mf5;
+    }
 }
