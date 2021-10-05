@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.UUID;
 
 public class ExampleItem extends ADStructure {
-    private String mhashcode, mdevicename, mdeviceaddress, mdevicerssi, mdeviceadvertising;
+    private String mhashcode, mdevicename, mdeviceaddress, mdevicerssi, mdeviceadvertising ;
     private int mmajor, mminor, mpower, mpower1, mpower2, mpower3, mversion, mvoltage;
     private float mtemperature;
     private byte[] mnamespaceId;

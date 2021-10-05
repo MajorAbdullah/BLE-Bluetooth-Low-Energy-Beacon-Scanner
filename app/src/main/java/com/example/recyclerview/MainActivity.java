@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 100000;
 
+    UUID My_UUID = UUID.fromString("52D9C624-7AAC-4EBB-9EB8-A6D930C54BD2")  ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -265,6 +268,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//
+public static String convertByteToHexadecimal(byte[] byteArray)
+{
+    String hex = "";
+
+    // Iterating through each byte in the array
+    for (byte i : byteArray) {
+        hex += String.format("%02X", i);
+    }
+
+    System.out.print(hex);
+    return hex;
+
+}
+
 
     private ScanCallback leScanCallback =
             new ScanCallback() {
@@ -280,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
                     for (ADStructure structure : structures) {
 
                         try {
+
                             Flags flags = (Flags)structure;
 
 // (1) LE Limited Discoverable Mode
@@ -301,6 +320,7 @@ public class MainActivity extends AppCompatActivity {
 // (5) Simultaneous LE and BR/EDR to Same Device Capable (Host)
                             boolean hostSimultaneity = flags.isHostSimultaneitySupported();
                             saveddata.setMf5(hostSimultaneity);
+
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -411,21 +431,22 @@ public class MainActivity extends AppCompatActivity {
                             String eidAsString = es.getEIDAsString();
                             saveddata.setMeid(eid);
                         }
-
-//
-
+                        
                     }
 
                     String devicename = result.getDevice().getName();
                     String devicersis = String.valueOf(result.getRssi());
                     String deviceaddress = result.getDevice().getAddress();
                     String hashcode = String.valueOf(result.hashCode());
-                    String advertising = String.valueOf(result.getDevice().getUuids());
+//                  byte[] advertising = String.valueOf(result.getScanRecord().getManufacturerSpecificData());
+                    byte[] a = result.getScanRecord().getBytes();
+                    String advertising = convertByteToHexadecimal(a); ;
 
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        advertising = String.valueOf(result.getAdvertisingSid());
-                    }
+
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                        advertising = String.valueOf(result.getAdvertisingSid());
+//                    }
 
                     saveddata.setMdevicename(devicename);
                     saveddata.setDevicerssi(devicersis);
@@ -458,5 +479,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             };
+
+
 
 }
