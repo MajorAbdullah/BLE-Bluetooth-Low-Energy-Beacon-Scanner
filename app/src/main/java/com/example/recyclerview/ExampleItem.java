@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.UUID;
 
 public class ExampleItem extends ADStructure {
-    private String mhashcode, mdevicename, mdeviceaddress, mdevicerssi, mdeviceadvertising ;
+    private String mhashcode, mdevicename, mdeviceaddress, mdevicerssi, mrawdata;
     private int mmajor, mminor, mpower, mpower1, mpower2, mpower3, mversion, mvoltage;
     private float mtemperature;
     private byte[] mnamespaceId;
@@ -24,14 +24,14 @@ public class ExampleItem extends ADStructure {
     }
 
 
-    public ExampleItem(String hashcode, String devicename, String deviceaddress, String devicerssi, String deviceadvertising, UUID uuid, int major, int minor, int power, int power1, int power2, int power3, int version,
+    public ExampleItem(String hashcode, String devicename, String deviceaddress, String devicerssi, String rawdata, UUID uuid, int major, int minor, int power, int power1, int power2, int power3, int version,
                        int voltage, float temperature, byte[] namespaceId, byte[] instanceId, byte[] beaconId, byte[] eid, long count, long elapsed, URL url,
                        boolean f1,  boolean f2,  boolean f3,  boolean f4,  boolean f5 ) {
         mhashcode = hashcode;
         mdevicename = devicename;
         mdeviceaddress = deviceaddress;
         mdevicerssi = devicerssi;
-        mdeviceadvertising = deviceadvertising;
+        mrawdata = rawdata;
 
         mf1 = f1;
         mf2 = f2;
@@ -64,12 +64,12 @@ public class ExampleItem extends ADStructure {
     }
 
 
-    public String getMdeviceadvertising() {
-        return mdeviceadvertising;
+    public String getMrawdata() {
+        return mrawdata;
     }
 
-    public void setMdeviceadvertising(String mdeviceadvertising) {
-        this.mdeviceadvertising = mdeviceadvertising;
+    public void setMrawdata(String mrawdata) {
+        this.mrawdata = mrawdata;
     }
 
     public String getMhashcode() {

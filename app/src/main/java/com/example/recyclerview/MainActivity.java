@@ -438,21 +438,21 @@ public static String convertByteToHexadecimal(byte[] byteArray)
                     String devicersis = String.valueOf(result.getRssi());
                     String deviceaddress = result.getDevice().getAddress();
                     String hashcode = String.valueOf(result.hashCode());
-//                  byte[] advertising = String.valueOf(result.getScanRecord().getManufacturerSpecificData());
+//                  byte[] rawdata = String.valueOf(result.getScanRecord().getManufacturerSpecificData());
                     byte[] a = result.getScanRecord().getBytes();
-                    String advertising = convertByteToHexadecimal(a); ;
+                    String rawdata = convertByteToHexadecimal(a); ;
 
 
 
 //                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                        advertising = String.valueOf(result.getAdvertisingSid());
+//                        rawdata = String.valueOf(result.getAdvertisingSid());
 //                    }
 
                     saveddata.setMdevicename(devicename);
                     saveddata.setDevicerssi(devicersis);
                     saveddata.setMdeviceaddress(deviceaddress);
                     saveddata.setMhashcode(hashcode);
-                    saveddata.setMdeviceadvertising(advertising);
+                    saveddata.setMrawdata(rawdata);
 
                     if (macAddressesList.size() > 0) {
                         if (macAddressesList.contains(deviceaddress)) {

@@ -40,7 +40,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.Dname.setText(currentItem.getMdevicename());
         holder.Did.setText(currentItem.getDevicerssi());
         holder.Daddress.setText(currentItem.getMdeviceaddress());
-        holder.Dadvertising.setText(currentItem.getMdeviceadvertising().toString());
+        holder.Dadvertising.setText(currentItem.getMrawdata().toString());
 
         holder.F1.setText(String.valueOf(currentItem.isMf1()));
         holder.F2.setText(String.valueOf(currentItem.isMf2()));
