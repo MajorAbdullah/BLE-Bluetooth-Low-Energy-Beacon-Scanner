@@ -30,11 +30,6 @@ This repository contains an Android application that scans Bluetooth Low Energy 
 - **ExampleAdapter.java**: Binds beacon data to the RecyclerView.
 - **ExampleItem.java**: Represents the structure of the beacon data.
 
-## Screenshots
-
-![Scanning Screen](https://yourlink.com/screenshot1.png)
-![Beacon Details](https://yourlink.com/screenshot2.png)
-
 ## Dependencies
 
 - **neovisionaries Bluetooth Library**: For parsing BLE advertisement data.
